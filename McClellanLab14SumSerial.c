@@ -3,7 +3,7 @@ Alex McClellan
 Dr. Shore
 CSC 2410
 18 April 2021
-Parallel RNG Program
+Serial RNG Program
 */
 
 #include<stdio.h>
@@ -53,7 +53,6 @@ int main(int argc, char *argv[]) {
 double sum(double array[], int num_elements) {
 	double total = 0;
 
-	#pragma omp parallel for reduction(+:total)
 	for (int i = 0; i < num_elements; i++) {
 		total = total + array[i];
 	}
@@ -64,7 +63,6 @@ double sum(double array[], int num_elements) {
 void gen_numbers(double numbers[], int num_elements) {
 	double randomNumber;	
 
-	#pragma omp parallel for
 	for (int i = 0; i < num_elements; i++) {
 		randomNumber = gen_rand(0,100);
 		numbers[i] = randomNumber;
